@@ -1,0 +1,33 @@
+name: Deploy mdBook to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # 如果你的預設分支是 master，請改為 master
+
+# 給予此工作流寫入權限以部署到 GitHub Pages
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install mdBook
+        run: |
+          # 自動下載並安裝最新版本的 mdBook
+          MDBOOK_VERSION=$(curl -s https://github.com | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          curl -sSL https://github.com | tar -xz
+          sudo mv mdbook /usr/local/bin/
+
+      - name: Build mdBook
+        run: mdbook build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book # mdBook 預設產生的網頁資料夾
