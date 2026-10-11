@@ -3,4 +3,5 @@ title = "C++ 底層開發工程師教材"
 authors = ["haotingjet-cpu"]
 language = "zh-TW"
 
+[output.html]
 site-url = "/learn-cpp/"
