@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f83083cd.js";
+            window.path_to_searchindex_js = "searchindex-0ff2f796.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2bf421d9.js"></script>
@@ -174,7 +174,19 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="第一章-c環境與程式分析"><a class="header" href="#第一章-c環境與程式分析">第一章: C++環境與程式分析</a></h1>
+                        <h1 id="第一章c-環境和程式分析"><a class="header" href="#第一章c-環境和程式分析">第一章：C++ 環境和程式分析</a></h1>
+<p>本章先回答一個底層開發工程師必須能回答的問題：一份 <code>.cpp</code> 原始碼如何成為作業系統能啟動的程式？如果只按 IDE 的執行鍵，很多工作被建置系統藏起來；出現 include、編譯或連結錯誤時，就很難判斷該從哪裡查起。</p>
+<p>本章會用一個最小的兩檔案程式，逐步看見原始檔、標頭、預處理輸出、物件檔和可執行檔各自扮演的角色。每個階段都會說明「輸入是什麼、輸出是什麼、哪一類錯誤會在這裡發生」。</p>
+<h2 id="學習目標"><a class="header" href="#學習目標">學習目標</a></h2>
+<ul>
+<li>分辨原始檔、標頭檔、物件檔與可執行檔。</li>
+<li>說明一個 C++ translation unit 如何產生並連結。</li>
+<li>閱讀簡單的診斷輸出，定位錯誤發生階段。</li>
+<li>寫出可重現的最小編譯命令。</li>
+</ul>
+<h2 id="如何閱讀範例"><a class="header" href="#如何閱讀範例">如何閱讀範例</a></h2>
+<p>範例以 C++20 和 GCC/Clang 命令列為主；MSVC 可用 <code>/std:c++20</code>、<code>/c</code>、<code>/Fo</code>、<code>/Fe</code> 完成相同目的，但命令列選項不完全相同。複製範例時，將每段程式放進指定檔案，再從該目錄執行命令。先觀察成功產物，再依作業刻意製造錯誤。</p>
+<p>語言標準定義 C++ 程式的語意，並不規定所有平台使用相同的可執行檔格式、ABI 或編譯器選項。若程式能在一台機器編譯，不代表它已經能在另一種作業系統或處理器架構執行。</p>
 
                     </main>
 
