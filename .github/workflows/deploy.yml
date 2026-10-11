@@ -16,12 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install mdBook
-        run: |
-          # 自動下載並安裝最新版本的 mdBook
-          MDBOOK_VERSION=$(curl -s https://github.com | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-          curl -sSL https://github.com | tar -xz
-          sudo mv mdbook /usr/local/bin/
+      # ✨ 推薦改用這個官方/社群維護的 Action，會自動幫你下載並安裝好最新的 mdBook
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: 'latest' # 自動抓取最新穩定版，也可以指定如 '0.4.40'
 
       - name: Build mdBook
         run: mdbook build
